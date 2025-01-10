@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       download-link: ${{ steps.aseprite-link.outputs.download-link }}
-      release-tag: ${{ steps.aseprite-link.outputs.release-tag }}
+      release-tag: ${{ steps.aseprite-link.outputs.release-tag }}    
     steps:
       - name: Fetch Aseprite release link
         id: aseprite-link
@@ -23,7 +23,7 @@ jobs:
         with:
             group: aseprite
             repo: aseprite
-            match: Aseprite-.*?-Source.zip
+            match: Aseprite-.*?-Source.zip  
 
   create-release:
     name: Create Release
@@ -51,7 +51,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-          os: [ windows-latest, ubuntu-latest, macOS-latest ]
+          os: [ windows-latest ]
         fail-fast: false
     steps:
       - name: Install Dependencies
@@ -60,7 +60,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y \
-            libpixman-1-dev libfreetype6-dev libharfbuzz-dev zlib1g-dev \
+            libpixman-1-dev libfreetype6-dev libharfbuzz-dev zlib1g-dev \  
             libx11-dev libxcursor-dev libxi-dev libgl1-mesa-dev
       - uses: actions/checkout@v4
       - name: Install Aseprite
